@@ -4,16 +4,16 @@
 
 The only difference between structure and class is that,
 
-- the members of structures are by default public
+- the members of <mark>structures</mark> are by default public
   and
 
-- the members of class are by default private.
+- the members of <mark>class</mark> are by default private.
 
 ```cpp
-// Example
-#include<iostream.h>
-#include<conio.h>
-struct Complex
+// Example of structure
+#include<iostream>
+using namespace std;
+struct Complex        //Structure
 {
     private:
         int a,b;
@@ -22,24 +22,24 @@ struct Complex
     {
          a=x;b=y;   
     }
-    void set_data()
+    void show_data()
     {
         cout<<"\na="<<a<<" b="<<b;    
     } 
-    };
-void main()
+};
+int main()
 {
-    clrscr();
     Complex c1;
     c1.set_data(3,4);
     c1.show_data();
-    getch();    
+    return 0;    
 }
 ```
 
 ```cpp
-#include<iostream.h>
-#include<conio.h>
+//Example of class and object
+#include<iostream>
+using namespace std;
 class Complex    // class will work same as struct
 {
     private:
@@ -49,46 +49,44 @@ class Complex    // class will work same as struct
     {
          a=x;b=y;   
     }
-    void set_data()
+    void show_data()
     {
         cout<<"\na="<<a<<" b="<<b;    
     } 
-    };
-void main()
+};
+int main()
 {
-    clrscr();
-    Complex c1;    // c1 will  be object because of class
+    Complex c1;    // c1 will be object because of class
     c1.set_data(3,4);
     c1.show_data();
-    getch();    
+    return 0;    
 }
 ```
 
 ```cpp
-#include<iostream.h>
-#include<conio.h>
+#include<iostream>
+using namespace std;
 class Complex
 {
     private:
         int a,b;
     public:
     void set_data(int,int);
-    void set_data()
+    void show_data()
     {
         cout<<"\na="<<a<<" b="<<b;    
     } 
-    };
-    void Complex:: set_data(int x, int y)
+};
+void Complex:: set_data(int x, int y)
     {
          a=x;b=y;   
     }
-void main()
+int main()
 {
-    clrscr();
     Complex c1;
     c1.set_data(3,4);
     c1.show_data();
-    getch();    
+    return 0;    
 }
 ```
 
@@ -109,8 +107,8 @@ Agar class ke ander kisi function ko defined karte hai to wo by default INLINE h
 ```cpp
 // Function call by passing object and returning object:
 
-#include<iostream.h>
-#include<conio.h>
+#include<iostream>
+using namespace std;
 class Complex
 {
     private:
@@ -126,23 +124,23 @@ class Complex
     } 
     Complex add(Complex c)
     {
-        Complex temp;    //temp is an Object which includes a and b...
+        Complex temp;    
+//temp is an Object which includes a and b...
         temp.a=a+c.a;
         temp.b=b+c.b;
         return(temp);
     }
  };
 
-void main()
+int main()
 {
-    clrscr();
     Complex c1,c2,c3;
     c1.set_data(3,4);
     c2.set_data(5,6);
       //  c3=c1+c2;    //<=    Wrong
     c3=c1.add(c2);
     c3.show_data();
-    getch();    
+    return 0;    
 }
 ```
 
@@ -183,7 +181,6 @@ class Complex
 
 int main()
 {
-
     Complex c1,c2,c3;
     c1.set_data(3,4);
     c2.set_data(5,6);
@@ -250,21 +247,13 @@ void fun()
 // y contains garbage value but x contains 0(zero)...
 ```
 
-
-
 **<u>Static member variables</u>**:
 
-
-
 <img title="" src="images/2.png" alt="" width="636">
-
-
 
  Variables which are made <u>**without** static keyword</u> inside class are called **<u>Instance Member Variable</u>**.
 
 Variables which are made <u>**with** static keyword</u> inside class are called **<u>Static Member Variable</u>** (OR) **<u>Class member Variable</u>**.
-
-
 
 ```cpp
 #include<iostream>
@@ -302,8 +291,6 @@ a1, a2 object ke ander "balance" naam ka variable exist karta hai pr "roi" naam 
 
 Jitne object "Account" class ke banaye jaayenge har object ke ander balance naam ka variable hoga... pr roi naam ka variable puri class ke liye sirf ekk baar banega... Aur object ke banne na banne se usspr koi pharak nahi padta... i.e. Agar humne ek bhi object nahi banaya phir bhi "roi" banega... ek object banaya phir bhi "roi" banega...  agar 10 object baanao phir bhi "roi" ek hi baar banega...
 
-
-
 Account::roi=4.5;    => We can access "roi" variable and Assign value in it... if "roi" is public...
 
 -------
@@ -313,8 +300,6 @@ Account::roi=4.5;    => We can access "roi" variable and Assign value in it.
 (contd. Previous lec...)
 
 Account::roi=4.5;    => We can access "roi" variable and Assign value in it... if "roi" is public...
-
-
 
 ```cpp
 #include<iostream>
@@ -346,13 +331,9 @@ int main()
 };
 ```
 
-
-
 setBalance, setRoi    => are Instance member functions (But HOW??)
 
 a1.setRoi(4.5f);    // Humne Account class ke Instance member function ko call kiya... object (i.e. a1) dot laga ke...
-
-
 
 static void setRoi(float r)    =>    Bina object  ke call karne ke liye... static use kiya gaya hai... So this will call as Static Member Function... and static member function can be call without an object...
 
@@ -366,8 +347,6 @@ It means static member function can be call without an object...
 
 Static member variable can be accessed with class name... only if variable is public...
 
-
-
 ![](images/3.png)
 
  -------
@@ -377,8 +356,6 @@ Static member variable can be accessed with class name... only if variable is pu
 **<u>Constructor</u>**:
 
 ![](images/4.png)
-
-
 
 ```cpp
 #include<iostream>
@@ -399,11 +376,7 @@ NOTE:    The name of the constructor is same as the name of the class... and
 
 ![](images/5.png)
 
-
-
 Implicitly invoked:    (Isse hum call nahi karte hai... ye call apne aap hota hai...)
-
-
 
 ```cpp
 #include<iostream>
@@ -430,11 +403,7 @@ int main()
 
 c1 => object of Complex class...
 
-
-
 ![](images/6.png)
-
-
 
 <u>Note</u>: 
 
@@ -447,8 +416,6 @@ Constructor ek aisa guraanted function hai jo object ke bante hi call ho jata ha
 -----------
 
 ## Lec 25 - Constructor in C++ (Part 2)
-
-
 
 ```cpp
 //Example of Constructor Overloading
@@ -481,13 +448,9 @@ Complex class mai aisa koi constructor moojud nahi hai jo koi argument/parameter
 
 <img title="" src="images/7.png" alt="" width="597">
 
-
-
 Note:
 
 Object banega to constructor to call hoga hi hoga...
-
-
 
 <img src="images/8.png" title="" alt="" width="444">
 
@@ -495,13 +458,9 @@ If there is no any constructor in the class... but the  constructor will called 
 
 In this auto made constructor there will be no Argument/Parameter pass...
 
-
-
 <img title="" src="images/9.png" alt="" width="355">
 
 Aagr humne ek bhi constructor bana diya.... to compiler "Implicit Default constructor" nahi banayega... and ERROR will form....
-
-
 
 NOTE:
 
@@ -510,8 +469,6 @@ Default constructor... jo Compiler banata hai... ya hum bhi bana sakte hai... ji
 ----------
 
 ## Lec 26 - Constructor in C++ (Part 3)
-
-
 
 ![](images/10.png)
 
@@ -523,9 +480,7 @@ Compiler in the class makes two constructor:    
 
 for Complex c4(c1);
 
-
-
-Points:
+<u>Points to remember</u>:
 
 - Class mai agar koi bhi construtor nahi bana hai to compiler 2 constructors banayega:    Default Constructor and Copy Constructor...
 
@@ -534,8 +489,6 @@ Points:
 - Agar hume class mai copy constructor bana diya hai to compiler Default Constructor and Copy Constructor dono hi nahi banega...
 
 - Agar humne Copy Constructor nahi banaya hai... koi dusra constructor banaya hai... to Compiler bas Copy constructor hi banayega...
-
-
 
 ```cpp
 #include<iostream>
@@ -567,8 +520,6 @@ int main()
 }
 ```
 
-
-
 Note:
 
 Copy constructor bs wahi hota hai jisme complex type ka reference pass hota hai...
@@ -591,23 +542,15 @@ In copy constructor making of reference variable is compulsory bacause making of
 
 e.g.:    static ~Complex()    <=    Not Possible
 
-
-
 - Destructor has no return type
 
 e.g.:    int ~Complex()  ,  void ~Complex() etc...    <=    Not Possible
-
-
 
 - Destructor takes no argument (No overloading is possible) 
 
 e.g.:    ~Complex(int x)        <=    Not Possible
 
-
-
 - It is invoked implicitly when object is going to destroy.
-
-
 
 ```cpp
 #include<iostream>
@@ -631,8 +574,6 @@ int main()
 }
 ```
 
-
-
 **Q.**   Why destructor?
 
 Answer:    
@@ -641,10 +582,6 @@ It should be defined to release resources allocated to an object...
 
 (Destructor wo function hai jo object destroy hone ke just pehle chalega...)
 
-
-
 <img src="images/11.png" title="" alt="" width="503">
-
-
 
 -------------------
