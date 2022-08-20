@@ -61,25 +61,27 @@ myfile.dat :=> It is a file name (OR) we can even write the path of the file... 
 
 Program to read the content of the file and show it in the output screen...
 
-    //Read the content of the file and show it in the output screen..
-    #include<iostream>
-    #include<fstream>
-    using namespace std;
-    
-    int main()
+```cpp
+//Read the content of the file and show it in the output screen..
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+int main()
+{
+    ifstream fin;
+    char ch;
+    fin.open("myfile.dat");
+    fin>>ch;
+    while(!fin.eof())
     {
-        ifstream fin;
-        char ch;
-        fin.open("myfile.dat");
-        fin>>ch;
-        while(!fin.eof())
-        {
-        cout<<ch;
-        fin>>ch;
-        }
-        fin.close();
-        return 0;
-    };
+    cout<<ch;
+    fin>>ch;
+    }
+    fin.close();
+    return 0;
+};
+```
 
 **Note**:
 
@@ -96,7 +98,7 @@ Reason for <mark>no space</mark> in the output is that this Extraction operator 
 
 fin>>ch;    =>    fin calls its Extraction operator (i.e. >>) and passed reference of "ch" as an Argument... 
 
-(reference: Section: Operator Overloading... )
+(For reference, SEE Section: Operator Overloading... )
 
 *SOLUTION of THE ISSUE*:
 
@@ -129,7 +131,7 @@ Note:
 
 We will use get() function instead of Extraction operator (i.e. >>)... which returns the character which it reads...
 
-get() function doesn't consider <mark>space</mark> as Data Separator...
+get() function <u>doesn't</u> consider <mark>space</mark> as Data Separator...
 
 <img title="" src="images/5.png" alt="" width="424">
 
@@ -200,7 +202,7 @@ Note:
 
 If file is open in <mark>Binary Mode</mark>, then "\n" will write as it is in the file...
 
-If file is open in <mark>Text Mode</mark>, then "\n" will doesn't write as it is in the file... instead "\n" changes the line into new line...
+If file is open in <mark>Text Mode</mark>, then "\n" will doesn't write as it is... in the file... instead "\n" changes the line into new line...
 
 ------------
 
@@ -319,13 +321,9 @@ NOTE:    "g" means "get" and "p" means "put"
 
 beg means begining, cur means current...
 
-
-
 **<u>seekg()</u>**: This is an important function for accessing file randomly (i.e. kisi bhi portion se data read karna hai...)
 
 streampos    =>   Pre-defined class... Assume it as simple integer value...
-
-
 
 ```cpp
 // Want to read file abc.txt    //Use of seekg()
@@ -354,8 +352,6 @@ int main()
 get() is a function which is used to read the character...
 
 seekg() function decides that whom get( ) pointer points...
-
-
 
 ```cpp
 // From Previous
@@ -393,11 +389,7 @@ int main()
 }
 ```
 
-
-
 <img src="images/19.png" title="" alt="" width="541">
-
-
 
 ```cpp
 //Want to write in the file abc.txt    //Use of seekp()
@@ -414,8 +406,6 @@ int main()
     getch();
 }
 ```
-
-
 
 ```cpp
 //From Previous program
@@ -461,5 +451,3 @@ int main()
 ```
 
 -------------
-
-

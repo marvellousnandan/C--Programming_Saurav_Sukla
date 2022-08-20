@@ -2,17 +2,21 @@
 
 ![](images/1.png)
 
-Example of "Property names and values":
+<u>Example of "Property names and values"</u>:
 
-Roll number is the name of the property and 2058 is the value of that property......
+Roll number is the "name of the property" and 2058 is the "value of that property"...
 
 (class mai hum property ke naam describe karte hai... aur  value hum property ki tabhi rakh sakte hai jab hum class ka bana le object...)
 
-"Behaviour means actions":
+--
+
+<u>"Behaviour means actions"</u>:
 
 The functions that we make in the class are the Behaviours/ actions/ operations/ functions/ methods of that object...
 
 (Apni class mai describe karte hai kisi bhi object ke liye kya properties hongi aur kya functionalities hongi...)
+
+--
 
 Let us assume that we want to represent a car.
 
@@ -77,6 +81,8 @@ class B: A    =>    means    class B:private A
 Private member ho..., Protected member ho... ya Public Member ho... Object banane pr teeno tarah ke members available hote hai....
 
 Lekin Accessible sirf Public members hote hai...
+
+--
 
 Note: 
 
@@ -154,14 +160,14 @@ class SportsCar:public Car    //When to use public inheritance
 ```cpp
 // When to use private and protected inheritance?
 #include<iostream>
-usinng namespace std;
+using namespace std;
 class Array
 {
     private:
         int a[10];
     public:
         void insert(int index, int value)
-        { a[index]=value;}
+        { a[index]=value; }
 };
 class STACK: public Array
 {
@@ -195,7 +201,7 @@ So, we need private inheritance
 
 class STACK: private Array
 
-so that all indices  filled in series... i.e. index 0 => 34,    index 1 => 56.... and so on... 
+so that all indices (indexes)  filled in series... i.e. index 0 => 34,    index 1 => 56.... and so on... 
 
 --------
 
@@ -234,17 +240,21 @@ int main()
 
 When compiler sees that there is no any constructor we made in the class B, then compiler will make constructor as well as write the neccessary steps to call the constructor of parent class A... But these steps are not present in the body of the child class constructor.... instead it will be like...
 
-B():A()    //    => So this is the way to call the constructor of parent class...
+<mark>B():A()</mark>    //    => So this is the way to call the constructor of parent class...
+
+--
 
 Q. In case of Inheritance, what is the order to run the constructors?
 
 Answer: From Parent to Child...
 
+--
+
 Q. In case of Inheritance, what is the order to call the constructors?
 
 Answer: From Child to Parent...
 
-(Here, pehle B (Child) ka constructor call hua phir A (Parent) ka call hua lekin execute pehle A (Parent) ka hua phir B (Child) ka hua...)
+(Here, pehle B (Child) ka constructor call hua... phir A (Parent) ka call hua... lekin execute pehle A (Parent) ka hua phir B (Child) ka hua...)
 
 ```cpp
 #include<iostream>
@@ -260,7 +270,7 @@ class B: public A
 {
     int b;
     public:
-        B(int x, int y):A(x)
+        B(int x, int y):A(x)    //SEE
         { b=y; }
 };
 int main()
@@ -326,11 +336,7 @@ But in the case of Destructor; First child will execute its own destructor then 
 
 A pointer contains address of an object is called Object pointer.
 
-
-
 <img title="" src="images/16.png" alt="" width="464"> 
-
-
 
 ```cpp
 // this pointer
@@ -363,13 +369,11 @@ int main()
 }
 ```
 
-
-
 smallBox.setDimension(12,10,5);     //object name used here
 
 p->setDimension(12,10,5)     // pointer name used here...
 
-
+--
 
 Conclusion:
 
@@ -383,32 +387,28 @@ dot will use with the object
 
 <img src="images/17.png" title="" alt="" width="546">
 
-
-
 this: it is a pointer variable...
 
-
+--
 
 local : local variable...i.e. Variable made inside any particular function... (kisi particular function ke ander bana variable hoga...)
 
+--
 
+<u>Instance member function</u>:    
 
-instance member function:    
-
-Functions made inside the class are the instance member function...
+Functions made inside the class are the instance member function... (since, without "static" keyword...)
 
 e.g. from the program:     setDimension, showDimension
 
-
+--
 
 NOTE:
 
-Inside every instance member fuction there is always a "this" pointer exists...
-
-
+Inside every instance member function there is always a "this" pointer exists...
 
 ```cpp
-// this pointer    //same as prevvious
+// this pointer    //same as previous
 #include<iostream>
 using namespace std;
 class Box
@@ -437,8 +437,6 @@ NOTE:
 
 Here, "local variable" name is l,b,h and also "instance member variable" name is also l,b,h but both  are different... (l,b,h alag variable hai jo object ke ander hai aur alg hai jo functions ke ander hai...)
 
-
-
 so, there should be some conflict with    { l=l; b=b; h=h; }
 
 since "this" used to represent caller object... ("this" is an object pointer...)
@@ -451,33 +449,27 @@ i.e.    { this->l=l; this->b=b; this->h=h; }
 
 ## Lec 42 - new and delete in C++ (Part 1)
 
-
-
 <img title="" src="images/18.png" alt="" width="455">
-
-
 
 Static Memory Allocation (SMA) (or) Compile time memory Allocation
 
-
-
  Note:
 
-Compile time memory Allocation ka matlab ye hai ki memory kitni allocate hone wali hai variable ke naam pr... ye compile time mai decide ho jata hai...
+Compile time memory Allocation ka matlab ye hai ki memory kitni allocate hone wali hai variable ke naam pr... ye <mark>compile time</mark> mai decide ho jata hai...
 
 and
 
 Memory ka allocation tab hota hai jab program run hona start hota hai... Program jab run hota hai tab wo RAM mai aata hai aur RAM ke ander variables ko memory milti hai...
 
+--
 
+<u>DMA</u>:
 
-DMA:
+It helps to decide how much memory we required.... And we create that much of required variables during the <mark>run time</mark>...
 
-It helps to decide how much memory we required.... And we create that much of required variables during the run time...
+--
 
-
-
-Advantage of DMA over SMA:
+<u>Advantage of DMA over SMA</u>:
 
 SMA don't give us the flexibility in the memory...
 
@@ -489,11 +481,7 @@ NOTE:
 
 Variables made from keyword "new" are called DMA variables.....
 
-
-
 <img src="images/20.png" title="" alt="" width="462">
-
-
 
 **<u>delete</u>**:
 
@@ -515,25 +503,17 @@ delete keyword is used to release the memory that is created by the keyword "new
 
 - Method Hiding
 
-
-
 **<u>Method Overriding</u>**:
 
 When function made in parent and child class with exactly same name and with same prototype and Arguments.... but may be there is difference in the coding, then it is called Method Overriding...
-
-
 
 **<u>Method Hiding</u>**:
 
 When we made a function in <mark>parent class</mark> and <mark>child class</mark> with same name but different Arguments are called Method Hiding...
 
-
-
 **<u>Function/Method Overloading</u>**:
 
 Function name same but difference in the Arguments in the <mark>SAME</mark> class...
-
-
 
 ```cpp
 // Example on Method Overriding and Method Hiding
@@ -550,20 +530,15 @@ class B:public A
     void f1(){    }    //Method Overriding
     void f2(int x){    }        //Method Hiding
 };
-
 ```
 
 Method Overriding:
 
 e.g.:    void f1( ){        }
 
-
-
 Method Hiding:
 
 e.g:    void f2( ){      }     and     void f2(int x){         }
-
-
 
 ```cpp
 // Example (previous program)
@@ -590,19 +565,15 @@ int main()
 }
 ```
 
-Early Binding Concept:
+<u>Early Binding Concept</u>:
 
 Here in this case, when we write <mark>obj.f1( )</mark>, so compiler have to decide which f1( ) were calling of class A or class B.... aur jo version chalna chahiye usko iss call ke saath kar diya jaayega Bind...
-
-
 
 <mark>obj.f2( )</mark>    => Agar f2( ) naam ka function... B (child) class mai hota hi nahi... to wo A (parent) class mai jata aur wo f2( ) function ko bind karta... aur Parent wala version bind ho jata...pr yaha (i.e. in class B) f2() wala function exist karta hai Bhale hi Argument different hai...
 
 Since, Naam match kar gaaya hai to compiler parent class mai nahi jaayega...
 
 Aur phir compiler dekhega f2( ) ke Arrguments match nahi kar rahe hai to <mark>ERROR</mark> show kar dega...
-
-
 
 ```cpp
 // Example on We want child functionality will work only not parent...

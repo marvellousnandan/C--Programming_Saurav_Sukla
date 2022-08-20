@@ -118,7 +118,7 @@ int main()
 
 c3=c1+c2;    //    =>    c1 ne plus ko call kiya, c2 as an Argument pass hua... aur plus ne jo return kiya wo c3 mai assign hua....
 
-Here... (+) is an Binary operator and Binary operator mai jo left oprand hota hai wahi caller object hota hai...
+Here... (+) is an Binary operator and Binary operator mai jo <mark>left oprand</mark> hota hai wahi caller object hota hai...
 
 **<u>Operator Overloading</u>**:
 
@@ -128,7 +128,7 @@ e.g.: Like plus ki ek se jayada defination ho gayi... Ek definition jo pehle se 
 
 values ko add karne ke liye ho gayi wo humne banai... toh iss tarah se operator overloaded ho gaya hai multiple jobs se...
 
-- It is a way to implement compile time polymorphism.
+- It is a way to implement compile time <mark>polymorphism</mark>.
 
 <img src="images/1.png" title="" alt="" width="501">
 
@@ -190,8 +190,6 @@ Overloading of unary operator
 
 ++ (Pre and Post)
 
-
-
 ```cpp
 #include<iostream>
 using namespace std;
@@ -202,19 +200,22 @@ class Integer
     public:
         void setData(int a)
         { x=a; }
+        
         void showData()
-        { cout<<"x="<<x; }
+        { cout<<"\nx="<<x; }
+
         Integer operator++()    //Pre-Increment
         {    
-        Integer i;
-           i.x=++x;
-        return(i);
+            Integer i;
+            i.x=++x;        //SEE -> Pre-Increment
+            return(i);
         }
+
         Integer operator++(int)    //Post-Increment
         {    
-        Integer i;
-           i.x=x++;
-        return(i);
+            Integer i;
+            i.x=x++;        //SEE -> Post-Increment
+            return(i);
         }
 };
 int main()
@@ -232,15 +233,11 @@ int main()
 
 i1 is the caller object of ++.
 
-
-
 NOTE:
 
-Agar  increment operator mai pre aur post alag alag banana chahte hai to... Compiler dono mai tab differentiate kar paayega jab hum post increment wale version mai ek int argument pass karenge...
+Agar increment operator mai pre aur post alag alag banana chahte hai to... Compiler dono mai tab differentiate kar paayega jab hum post increment wale version mai ek int argument pass karenge...
 
 If we not mention "<mark>int</mark>" in "<mark>Integer operator++(int)</mark>" then  compiler will get confuse in both versions so it get confuse (i.e. which one we need to call...) i.e. "<mark>Integer operator++()</mark>" and "<mark>Integer operator++(int)</mark>"
-
-
 
 ----------
 
@@ -251,8 +248,6 @@ If we not mention "<mark>int</mark>" in "<mark>Integer operator++(int)</mark>" t
 - Friend Function is not a member function of a class to which it is a friend
 
 (Ek aisa function jo class ka friend hai pr member function nahi hai...)
-
-
 
 - Friend function is declared in the class with friend keyword
 
@@ -265,8 +260,6 @@ If we not mention "<mark>int</mark>" in "<mark>Integer operator++(int)</mark>" t
 - It has no caller object
 
 - It should not be defined with membership label (i.e. e.g. Complex::)
-
-
 
 ```cpp
 #include<iostream>
@@ -298,17 +291,11 @@ int main()
 
 ## Lec 32 - Friend Function in C++ (Part 2)
 
-
-
 - Friend function can become friend to more than one class
-
-
 
 NOTE:
 
 Friend function ko chahe public mai declare kare ya private mai declare kare class ke ander... isse koi pharak nahi padta hai... kyuki ye member function nahi hai... 
-
-
 
 ```cpp
 #include<iostream>
@@ -354,8 +341,6 @@ Program ke ander aisa friend function hai jo ek se jayada classes (Here, two cla
 ## Lec 33 - Friend Function in C++ (Part 3)
 
 <u>Overloading of operators as a friend function</u>:
-
-
 
 ```cpp
 // Overloading of operators as a friend function
@@ -404,11 +389,7 @@ c3=c1.operator+(c2);
 
 c1 ek caller object hai... operator "+" ko call kiya hai... aaur operator c2 as an Argument pass hua hai...
 
-
-
-~~(TIME STAMP:-     4:08 - 4:48   )~~    =>    c3=c1+c2; //c3=c1.operator+(c2);
-
-
+~~(TIME STAMP:-     4:08 - 4:48   )~~    =>    c3=c1+c2;     //    c3=c1.operator+(c2);
 
 <mark>Now</mark>, Explanation Change after making Friend Function:
 
@@ -416,15 +397,11 @@ c3=operator+(c1,c2)    =>    plus call hua aur c1,c2 as an argument pass
 
 As a friend function defined karenge to jo pehla oprand jo caller object hua karta tha.. ab usse bhi argument ki tarrah pass karna padega... to ab 2 argumnet pass honge....
 
-
-
 NOTE:
 
 Jab bhi koi Binary Operator ko overload karte hai to ek Argument pass karte hai agar usko as a member function banayenge...
 
 Agar usse as a friend function banayenge... to ek jayada argument pass hoga...
-
- 
 
  NOTE:
 
@@ -432,13 +409,9 @@ Operator Uninary ho ya Binary ho... jitne arguments pass karne padte the jab uss
 
 -----------------
 
-
-
 ## Lec 34 - Friend Function in C++ (Part 4)
 
 <u>Overloading of unary operator as a friend function</u>:
-
-
 
 ```cpp
 // Overloading of unary operator as a friend function
@@ -483,7 +456,7 @@ c2=-c1;    =>    c1 ne minus operator ko call kiya aur koi argument pass
 
 Jab uninary operator ko as a member function define kiya jata hai... to koi Argument pass nahi karte to ek oprand chahiye... caller object ke roop mai mil jaata hai...
 
- 
+--
 
 <mark>Now</mark>, New Definition after making Friend function:
 
@@ -493,19 +466,15 @@ c2=-c1;     //    c2=operator-(c1)    =>    minus operator call 
 
 Agar uninary operator ko as a Friend function define karte hai to unka koi caller object nahi hai... to jo pehle kabhi caller object hua karta tha to use bhi ab argument ke roop mai pass karna padega...
 
-
-
 <mark>Conclusion</mark>:
 
-Kisi bhi operator ko agar member function ke roop mai define karenge to jitne argument pass karne padte hai usse ek jayada argument pass karne padenge agar ussi fuction ko as a friend function banaya jaayega...
+Kisi bhi operator ko agar member function ke roop mai define karenge to... jitne argument pass karne padte hai usse ek jayada argument pass karne padenge agar ussi function ko as a <u>friend function</u> banaya jaayega...
 
 ----
 
 ## Lec 35 - Friend Function in C++ (Part 5)
 
 Overloading of insertion and extraction operator
-
-
 
 ```cpp
 // Overloading of insertion and extraction operator
@@ -538,7 +507,7 @@ istream& operator>>(istream &din,Complex &C)
 int main()
 {
    Complex c1;
-    cout<<"Enter a complex nnumber ";
+    cout<<"Enter a complex number ";
     cin>>c1;
     cout<<"You entered:";
     cout<<c1;    //operator<<(cout,c1);
@@ -546,47 +515,41 @@ int main()
 }
 ```
 
-
-
 cin>>c1;    //    cin.operator>>(c1);
 
-Extraction operator
+Extraction operator (>>)
 
-
+//////////////////////////////////////////////////////////////////////
 
 cout<<c1;
 
 c1 => complex type ,     cout => Non-primitive type...
 
-Insertion Operator
+Insertion Operator (<<)
 
-cout<<c1;      //    cout ne insertion operator ko call kiya... usme c1 as an Argument pass hua... which is not possible... because cout agar apne insertion operator ko call karega iska mtlab cout jis class ka object hai uss class ke ander aisa insertion operator bana hona chahiye jisme complex type ki value receive ho sake but nahi bana hoga...
+//////////////////////////////////////////////////////////////////////
 
+cout<<c1;      //    "cout" ne insertion operator ko call kiya... usme c1 as an Argument pass hua... which is not possible... because "cout" agar apne insertion operator (<<) ko call karega iska mtlab "cout" jis class ka object hai uss class ke ander aisa insertion operator (<<) bana hona chahiye jisme complex type ki value receive ho sake but nahi bana hoga...
 
+operator<<(cout,c1);    =>    Insertion operator call hua aur "cout", "c1" dono usme as an Argument pass hue... "cout" is first argument and "c1" is second argument which are passing...
 
-operator<<(cout,c1);    =>    Insertion operator call hua aur cout, c1 dono usme as an Arrgument pass hue... cout is first argument and c1 is second argument which are passing...
+--
 
-
-
-For Insertion Operator:
+For Insertion Operator (<<):
 
 ostream class ka hum object to nahi banwa sakte to hum reference bana dete hai(i.e. hum reference return karenge)...
 
 ostream is used for cout...
 
+--
 
-
-Similarly, for Extraction operator
+Similarly, for Extraction operator (>>):
 
 istream class ka hum object to nahi banwa sakte to hum reference bana dete...
-
-
 
 friend istream& operator>>(istream&,<mark> Complex&</mark>);
 
 We need to use reference with the complex because hume Actual arguments mai changes karwane hai...
-
-
 
 ----------------------------
 
@@ -594,11 +557,7 @@ We need to use reference with the complex because hume Actual arguments mai chan
 
 Member function of one class can become friend to another class
 
-
-
 A::fun( )    =>    class A scope resolution fun()
-
-
 
 ```cpp
 #include<iostream>
@@ -625,12 +584,8 @@ class B
  };
 void fun()
 {
-    
+
 }
 ```
 
-
-
 ------
-
-

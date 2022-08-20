@@ -8,7 +8,7 @@ Base class Pointer:
 
 Note:
 
-Agar pointer parent class ka banate hai to uske child class ka object ka address contain kar sakta hai...
+Agar pointer "parent class" ka banate hai to uske "child class" ka object ka address contain kar sakta hai...
 
 but child class pointer can't points parent's object...
 
@@ -41,17 +41,17 @@ p->f1( )    //=>  Here,  p will not able to find out o1 ka address hai y
 
 pointer ka type declaration ke time pata lag gaya tha (    A *p,o1;    )... i.e. pointer ka type hai "A". Early binding karte waqt compiler... pointer ke type ko dekhega... na ki pointer ke content ko...
 
-Conclusion:
+<u>Conclusion</u>:
 
-Function ko call agar object ke dwara kiya ja raha hai to object ke type ko dekhte hai...
+- Function ko call agar object ke dwara kiya ja raha hai to object ke type ko dekhte hai...
 
-Pointer ke dawara agar function ko call kar rahe hai to pointer ke type ko dekhte hai...
+- Pointer ke dawara agar function ko call kar rahe hai to pointer ke type ko dekhte hai...
 
-parent ke pointer ke through calling ho raha hai to... child ka object banane ke baad bhi child wala f1( ) nahi chal raha hai... aaur ye problem hai...
+- parent ke pointer ke through calling ho raha hai to... child ka object banane ke baad bhi child wala f1( ) nahi chal raha hai... aaur ye problem hai...
 
 (The purpose of Overriding is that for child class object... latest child definition will works...)
 
-To solve this problem the solution is to not proceed Early Binding  
+To solve this problem the solution is "to not proceed Early Binding"  
 
 We need LATE BINDING in the run time... because in run time we can know the content of the pointer... and which address pointer contains...
 
@@ -201,7 +201,7 @@ Template:-
 
 - The keyword template is used to define function template and class template
 
-- It is a way to make yourfunction or clas generalize as far as data type is concern.
+- It is a way to make your function or class generalize as far as data type is concern.
 
 Note:- Template is a type of Format...
 
@@ -210,8 +210,6 @@ Template use in making of:
 - Function Template    //    Generic Function
 
 - Class Template    //    Generic Class
-
-
 
 ```cpp
 //Only Datatype is different but the function is same...
@@ -242,8 +240,6 @@ int main()
 ```
 
 If we are using Function overloading just because function is same, coding is  same even number of Arguments are same but Only Datatype (i.e. Here, int and double) is different... So, Template helps to solve this issue by making single version of function...
-
-
 
 ![](images/5.png)
 
@@ -277,7 +273,7 @@ template    =>    Keyword...
 
 X    =>    Place holder... (We can change name of Place holder anything...)
 
-Place holder replace by DataType...
+Place holder replace by "DataType".
 
 ```cpp
 //Use of Template For two arguments of different DataTypes...
@@ -306,8 +302,6 @@ int main()
 ## Lec 48 - Template in C++ (Part 2)
 
 ![](images/6.png)
-
-
 
 ```cpp
 #include<iostream>
@@ -368,21 +362,19 @@ int main()
 
 ![](images/8.png)
 
+NOTE:
+
 Member function is access through the Pointer...
 
-and Structure is access with the help of Arrow operator...
+and 
 
-
+Structure is access with the help of Arrow operator...
 
 ![](images/7%20output.png)
 
-
-
-Conclusion of above program:
+<u>Conclusion of above program</u>:
 
 Humne aisa array bana liya hai jisme hum Array ko declare karte waqt ArrayList ka object banate waqt jo size mention karenge... to Array uss size ka ban jaayega... Aur usme hum utni values rakh paayenge...
-
-
 
 ```cpp
 //Solution of previous Example for different Datatype issue...
@@ -442,8 +434,6 @@ ArrayList < int>list1(4);    //Need to mention the DataType... i.e. int, flo
 
 ArrayList < float>list1(4);    //Here Datatype is "float"
 
-
-
 ```cpp
 //Solution of previous Example for different Datatype issue...
 //Here datatype is "float" 
@@ -457,7 +447,7 @@ template<class X>class ArrayList
         struct ControlBlock
         {
             int capacity;
-            X *arr_ptr;    //SEE //replced by "X"
+            X *arr_ptr;    //SEE //replaced by "X"
         };
         ControlBlock *s;
     public:
@@ -503,15 +493,3 @@ int main()
 ![](images/9.png)
 
 -----------
-
-
-
-
-
-
-
-
-
-
-
- 

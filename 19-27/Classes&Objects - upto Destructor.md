@@ -114,14 +114,14 @@ class Complex
     private:
         int a,b;
     public:
-    void set_data(int x,int y);
-     {
-         a=x;b=y;   
-    }
+    void set_data(int x,int y)
+    {
+         a=x; b=y;   
+     }
     void show_data()
     {
         cout<<"\na="<<a<<" b="<<b;    
-    } 
+    }
     Complex add(Complex c)
     {
         Complex temp;    
@@ -144,7 +144,7 @@ int main()
 }
 ```
 
-// c1, c2 and c3 are instances (objects) of  class complex....
+// c1, c2 and c3 are instances (objects) of  class complex...
 
 //    set_data, show_data, add are Instance member function...
 
@@ -152,9 +152,24 @@ c3=c1+c2; Gives Error because operands of the Operator are of non-primitive type
 
 c3=c1.add(c2);    =>    c1 ne add function ko call kiya (i.e. c1 is a caller object aaur add uska member function hai...), c2 as an Argument pass hua aaur jo add function ne return kiya wo  c3 mai assign huaa...
 
+temp.a=<mark>a</mark>+c.a;    
+
+//Since, caller object (c1) ko Member function directly access kar sakta hai... so, only writing "<mark>a</mark>" is enough... <mark>a</mark> belongs to c1... kyuki add( ) function ko call kiya hai c1 ne....
+
+and here "c" represents "c2"
+
+"temp" is an object which stores  "a" and "b".... that's why we write temp.a and temp.b..... 
+
+Note: c1 and c2 are made in the main function... so, cann't access in the add function...
+
+Similarly,
+
+temp.b=b+c.b;    // "c" represents c2 and only "b" is for c1... because caller object (c1) ko Member function directly access kar sakta hai...
+
 ```cpp
 // Function call by passing object and returning object:
 // Same as previous (More Understanding)
+//    By Bhaiya
 #include<iostream>
 using namespace std;
 class Complex
@@ -163,16 +178,17 @@ class Complex
         int a,b;
     public:
     void set_data(int x,int y)
-     {
+    {
          a=x;b=y;   
     }
     void show_data()
     {
         cout<<"\na="<<a<<" b="<<b;    
     } 
-    Complex add(Complex c)
+    Complex add(Complex c) 
+// add() function defined inside the Complex class...
     {
-        Complex temp;    //temp is an Object which includes a and b...
+        Complex temp;    //temp is an Object which includes a and b..
         temp.a=this->a+c.a;     // temp.a = c1.a + c2.a;
         temp.b=this->b+c.b;
         return(temp);
@@ -188,6 +204,51 @@ int main()
     c3=c1.add(c2);
     c3.show_data();
     return 0;   
+}
+```
+
+temp.a = c1.a + c2.a;        //   => Only for Understanding... not Work in the program... 
+
+```cpp
+// Function call by passing objet and returning object
+// using Membership label in the add() function...
+// BY myself
+
+#include<iostream>
+using namespace std;
+class Complex
+{
+    private:
+    int a, b;
+    public:
+    void setValue(int x, int y)
+    {
+        a=x; b=y;
+    }
+    void showValue()
+    {
+        cout<<"a="<<a<<" b="<<b;
+    }
+    Complex add(Complex c);    //SEE
+};
+Complex Complex::add(Complex c)    //SEE
+// add() function defined outside the Complex class...
+// Using Membership Label in add() function...
+{
+    Complex temp;
+    temp.a=a+c.a;
+    temp.b=b+c.b;
+    return temp;
+}
+int main()
+{
+    Complex c1,c2,c3;
+    c1.setValue(2,3);
+    c2.setValue(4,5);
+    c3=c1.add(c2);
+    c3.showValue();
+    return 0;
+
 }
 ```
 
@@ -222,9 +283,11 @@ State of an object should be change by its methods...
 
 ## Lec 22 - Static Members in C++ (Part 1)
 
-Static local variables
-Static member variables
-Static Member Functions
+- Static local variables
+
+- Static member variables
+
+- Static Member Functions
 
 **<u>Static local variables</u>**:
 
@@ -239,23 +302,24 @@ Static Member Functions
 using namespace std;
 void fun()
 {
-    static int x;
+    static int x;    //SEE //Static local variables
     int y;
 }
 
-
-// y contains garbage value but x contains 0(zero)...
+//NOTE:    y contains garbage value but x contains 0(zero)...
 ```
 
 **<u>Static member variables</u>**:
 
 <img title="" src="images/2.png" alt="" width="636">
 
- Variables which are made <u>**without** static keyword</u> inside class are called **<u>Instance Member Variable</u>**.
+- Variables which are made <u>**without** static keyword</u> inside class are called **<u>Instance Member Variable</u>**.
 
-Variables which are made <u>**with** static keyword</u> inside class are called **<u>Static Member Variable</u>** (OR) **<u>Class member Variable</u>**.
+- Variables which are made <u>**with** static keyword</u> inside class are called **<u>Static Member Variable</u>** (OR) **<u>Class member Variable</u>**.
 
 ```cpp
+//Example: (Idea only - Not completed Program)
+
 #include<iostream>
 using namespace std;
 class Account 
@@ -263,6 +327,7 @@ class Account
     private:
         int balance;    //Instance Member Variable
         static float roi;   //Static Member Variable (OR) Class Variable
+
     public:
         void setBalance(int b)
         {
@@ -270,7 +335,10 @@ class Account
         }
 };
 
-float Account:: roi=3.5f;  // roi variable defined i.e. outside the class
+float Account:: roi=3.5f;  
+// roi variable defined i.e. outside the class
+
+
 int main()
 {
     Account a1,a2;
@@ -285,7 +353,7 @@ Account     =>     It is a Class
 
 a1,a2    =>    objects
 
-Note:-    
+<u>Note</u>:-    
 
 a1, a2 object ke ander "balance" naam ka variable exist karta hai pr "roi" naam ka variable exist nahi karta hai...
 
@@ -302,6 +370,10 @@ Account::roi=4.5;    => We can access "roi" variable and Assign value in it.
 Account::roi=4.5;    => We can access "roi" variable and Assign value in it... if "roi" is public...
 
 ```cpp
+//Example: static member function
+/*Static member variable can be accessed with class name... 
+only if variable is public... */
+
 #include<iostream>
 using namespace std;
 class Account 
@@ -309,8 +381,12 @@ class Account
     private:
         int balance;    //Instance Member Variable
         static float roi;   //Static Member Variable (OR) Class Variable
+/*
+Here use of static keyword helps to make "roi" as same for every object 
+like a1,a2 of Account class... 
+*/
     public:
-        void setBalance(int b)
+        void setBalance(int b)    // Instance member function
         {
             balance = b;
         }
@@ -320,28 +396,42 @@ class Account
         }
 };
 
-float Account:: roi=3.5f;  // roi variable defined i.e. outside the class
+float Account:: roi=3.5f;  //i.e. "roi" initilised with 3.5f
+// "roi" variable defined i.e. outside the class
+
 int main()
 {
     Account a1,a2;
-    a1.setRoi(4.5f);
-    Account::setRoi(4.5f);
+    a1.setRoi(4.5f);        // SEE // setRoi function call using object
+    Account::setRoi(4.5f); // setRoi function call using class name
 
     return 0;
 };
 ```
 
-setBalance, setRoi    => are Instance member functions (But HOW??)
+setBalance  => is Instance member function (Because of without "static" keyword) but "setRoi" should be Static member function because Static keyword is used here...
 
-a1.setRoi(4.5f);    // Humne Account class ke Instance member function ko call kiya... object (i.e. a1) dot laga ke...
+-
 
-static void setRoi(float r)    =>    Bina object  ke call karne ke liye... static use kiya gaya hai... So this will call as Static Member Function... and static member function can be call without an object...
+a1.setRoi(4.5f);    // Humne Account class ke <mark>Static member function</mark> ko call kiya... object (i.e. a1) dot laga ke...
 
-::    =>     Scope resolution operator...
+-
 
-Account::setRoi(4.5f);    => Aagar object nahi hai, to isko call karne ke liye class ka naam, Scope resolution operator, aur fir function call likhna hoga...
+NOTE:
 
-It means static member function can be call without an object...
+static void setRoi(float r)    =>    Bina object ke call karne ke liye... static use kiya gaya hai... So this will call as Static Member Function... and static member function can be call without an object...
+
+-
+
+::    =>     Scope resolution operator
+
+-
+
+Account::setRoi(4.5f);    => Aagar object nahi hai, to isko call karne ke liye "<mark>class ka naam</mark>", "<mark>Scope resolution operator</mark>", aur fir "<mark>function call</mark>" likhna hoga...
+
+It means static member function can be call without an object....
+
+-
 
 <u>Conclusion</u>:
 
@@ -520,13 +610,61 @@ int main()
 }
 ```
 
-Note:
+**<u>Note</u>**:
 
-Copy constructor bs wahi hota hai jisme complex type ka reference pass hota hai...
+- <mark>Copy constructor</mark> bs wahi hota hai jisme <u>complex type ka reference</u> pass hota hai...
 
-Jab bhi object banate hai... Aur banate waqt same class ka object usme pass karte hai to copy constructor call hota hai...
+- Jab bhi object banate hai... Aur banate waqt same class ka object usme pass karte hai to copy constructor call hota hai...
 
-In copy constructor making of reference variable is compulsory bacause making of object causes ERROR...
+- In <mark>copy constructor</mark> making of reference variable is compulsory bacause making of object causes ERROR...
+
+```cpp
+//By Bhaiya 
+// Copy Constructor not working... CHECK IT...
+
+#include<iostream>
+using namespace std;
+class Complex
+{
+    private:
+        int a,b;
+    public:
+        Complex(int x,int y)    //Parameterized Constructor
+        { a=x; b=y; }
+        Complex(int k)            //Parameterized Constructor
+        { a=k; } 
+        Complex()            //Default Constructor
+        { }
+     /*   
+        Complex(Complex &c)    //    =>Copy Constructor
+        {    
+        a=c.a;    
+        b=c.b;
+        } 
+        */
+        void setData(int a, int b)
+        {
+            this->a=a; this->b=b;
+        }
+        void showData()
+        {
+            cout<<"\na="<<a<<" b="<<b;
+        }
+
+};
+
+int main()
+{
+    Complex c1(3,4), c2(5), c3;
+    // Complex c4(c1);
+    Complex c4 = c1;
+    c4.showData();
+    c1.setData(11,11);
+    c4 = c1;    //Not define "Complex" here again....
+    c4.showData();
+    return 0;
+}
+```
 
 ----------
 
@@ -536,7 +674,7 @@ In copy constructor making of reference variable is compulsory bacause making of
 
 - Destructor is an instance member function of a class
 
-- The name of the destructoris same as the name of a class but preceded by tilde (~) symbol
+- The name of the destructor is same as the name of a class but preceded by tilde (~) symbol
 
 - Destructors can never be static
 
