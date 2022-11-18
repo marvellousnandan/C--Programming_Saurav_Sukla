@@ -167,7 +167,9 @@ class Array
         int a[10];
     public:
         void insert(int index, int value)
-        { a[index]=value; }
+        { 
+            a[index]=value; 
+        }
 };
 class STACK: public Array
 {
@@ -178,18 +180,18 @@ class STACK: public Array
             insert(top,value);
         }
 };
-void main()
+int main()
 {
     STACK s1;
     s1.push(34);
     s1.insert(2,56);
-
+    return 0;
 }
 ```
 
-s1.insert(2,56);    //    =>    First we call the insert function and then assign the 56 in index 2....
+s1.insert(2,56);    //    =>    First we call the insert function and then assign the 56 in index 2...
 
-![](images/15.png)    //Result of => class STACK: public Array    i.e. index 1 gets vacant....
+![](images/15.png)    //Result of => class STACK: public Array    i.e. index 1 gets vacant...
 
 NOTE:
 
